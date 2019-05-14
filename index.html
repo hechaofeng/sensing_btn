@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .nipple-front {
+      background: url('./images/btn-active.png') center center no-repeat;
+      background-size: cover;
+    }
+    .nipple-active{
+      background: url('./images/outline.png') center center no-repeat;
+      background-size: cover;
+      opacity: 0.1;
+    }
+    .nipple-back {
+      background: url('./images/bg.png') center center no-repeat;
+      background-size: cover;
+    }
+
+    #sensing_btn {
+      position: relative;
+      background-color: #aaa;
+    }
+
+  </style>
+</head>
+<body>
+<!--遥感按钮组件-->
+<div id="sensing_btn"></div>
+  <script src="./sensing_btn.js"></script>
+  <script src="./joystick.js"></script>
+  <script>
+/*
+var options = {
+    zone: Element,                  // active zone
+    color: String,
+    size: Integer,
+    threshold: Float,               // before triggering a directional event
+    fadeTime: Integer,              // transition time
+    multitouch: Boolean,
+    maxNumberOfNipples: Number,     // when multitouch, what is too many?
+    dataOnly: Boolean,              // no dom element whatsoever
+    position: Object,               // preset position for 'static' mode
+    mode: String,                   // 'dynamic', 'static' or 'semi'
+    restJoystick: Boolean,
+    restOpacity: Number,            // opacity when not 'dynamic' and rested
+    catchDistance: Number           // distance to recycle previous joystick in
+                                    // 'semi' mode
+}; */
+
+    new Joystick({
+      zone: document.getElementById('sensing_btn'),
+      size:400,
+    }).init()
+     .onStart = function(distance, direction, angle) {
+      console.log('angle:',angle);
+      switch(direction) {
+        case 'up':
+          console.log('up-distance:',distance);
+          break;
+        case 'right':
+          console.log('right-distance:',distance);
+          break;
+        case 'left':
+          console.log('left-distance:',distance);
+          break;
+        case 'down':
+          console.log('down-distance:',distance);
+          break;
+        case 'right-up':
+          console.log('right-up-distance:',distance);
+          break;
+        case 'left-up':
+          console.log('left-up-distance:',distance);
+          break;
+        case 'left-down':
+          console.log('left-down-distance:',distance);
+          break;
+        case 'right-down':
+          console.log('right-down-distance:',distance);
+          break;
+        default:
+          return false;
+      }
+    }
+
+  </script>
+</body>
+</html>
